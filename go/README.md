@@ -1,4 +1,4 @@
-# z-image api Go SDK for RunAPI
+# Z-Image API Go SDK for RunAPI
 
 The z-image api Go SDK is the language-specific package for Z-Image on RunAPI. Use this z-image api package for text-to-image, image-to-image, edit, and creative production flows when your application needs JSON request bodies, task status lookup, and consistent RunAPI errors in Go.
 
