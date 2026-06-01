@@ -7,7 +7,7 @@ export interface TextToImageParams {
   model: ZImageModel;
   prompt: string;
   aspect_ratio: AspectRatio;
-  nsfw_checker?: boolean;
+  enable_safety_checker?: boolean;
   callback_url?: string;
 }
 

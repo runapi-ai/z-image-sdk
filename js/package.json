@@ -1,6 +1,6 @@
 {
   "name": "@runapi.ai/z-image",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "description": "RunAPI Z-Image SDK for JavaScript, Ruby, and Go",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
@@ -25,7 +25,7 @@
     "clean": "rm -rf dist"
   },
   "dependencies": {
-    "@runapi.ai/core": "^0.2.4"
+    "@runapi.ai/core": "^0.2.5"
   },
   "devDependencies": {
     "@types/node": "^20.0.0",

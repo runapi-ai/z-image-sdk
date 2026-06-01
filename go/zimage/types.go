@@ -3,11 +3,11 @@ package zimage
 type TaskStatus string
 
 type TextToImageParams struct {
-	Model       string `json:"model" help:"required; z-image"`
-	Prompt      string `json:"prompt" help:"required; up to 1000 chars"`
-	AspectRatio string `json:"aspect_ratio" help:"required; 1:1, 4:3, 3:4, 16:9, 9:16"`
-	NsfwChecker *bool  `json:"nsfw_checker,omitempty" help:"optional; when false, disables content filtering. Default: false"`
-	CallbackURL string `json:"callback_url,omitempty" help:"optional; webhook URL"`
+	Model               string `json:"model" help:"required; model slug"`
+	Prompt              string `json:"prompt" help:"required; up to 1000 chars"`
+	AspectRatio         string `json:"aspect_ratio" help:"required; output aspect ratio"`
+	EnableSafetyChecker *bool  `json:"enable_safety_checker,omitempty" help:"optional; content safety check toggle"`
+	CallbackURL         string `json:"callback_url,omitempty" help:"optional; webhook URL"`
 }
 
 type AsyncTaskResponse struct {

@@ -27,10 +27,12 @@ func (s *stubHTTPClient) Request(_ context.Context, method, path string, opts *c
 func TestTextToImageCreate(t *testing.T) {
 	stub := &stubHTTPClient{response: json.RawMessage(`{"id":"task_123","status":"processing"}`)}
 	client := NewClientWithHTTP(stub)
+	enableSafetyChecker := true
 	resp, err := client.TextToImage.Create(context.Background(), TextToImageParams{
-		Model:       "z-image",
-		Prompt:      "A Paris cafe",
-		AspectRatio: "1:1",
+		Model:               "z-image",
+		Prompt:              "A Paris cafe",
+		AspectRatio:         "1:1",
+		EnableSafetyChecker: &enableSafetyChecker,
 	})
 	if err != nil {
 		t.Fatal(err)
@@ -39,7 +41,7 @@ func TestTextToImageCreate(t *testing.T) {
 		t.Fatalf("unexpected request: %s %s", stub.method, stub.path)
 	}
 	body := stub.body.(map[string]any)
-	if body["model"] != "z-image" || body["prompt"] != "A Paris cafe" || body["aspect_ratio"] != "1:1" {
+	if body["model"] != "z-image" || body["prompt"] != "A Paris cafe" || body["aspect_ratio"] != "1:1" || body["enable_safety_checker"] != true {
 		t.Fatalf("unexpected body: %v", body)
 	}
 	if resp.ID != "task_123" {
@@ -48,7 +50,7 @@ func TestTextToImageCreate(t *testing.T) {
 }
 
 func TestTextToImageGet(t *testing.T) {
-	stub := &stubHTTPClient{response: json.RawMessage(`{"id":"task_456","status":"completed","images":[{"url":"https://example.com/result.jpg"}]}`)}
+	stub := &stubHTTPClient{response: json.RawMessage(`{"id":"task_456","status":"completed","images":[{"url":"https://cdn.runapi.ai/public/samples/result.jpg"}]}`)}
 	client := NewClientWithHTTP(stub)
 	resp, err := client.TextToImage.Get(context.Background(), "task_abc")
 	if err != nil {
@@ -60,7 +62,7 @@ func TestTextToImageGet(t *testing.T) {
 	if resp.ID != "task_456" || string(resp.Status) != "completed" {
 		t.Fatalf("unexpected response: %+v", resp)
 	}
-	if len(resp.Images) != 1 || resp.Images[0].URL != "https://example.com/result.jpg" {
+	if len(resp.Images) != 1 || resp.Images[0].URL != "https://cdn.runapi.ai/public/samples/result.jpg" {
 		t.Fatalf("unexpected images: %v", resp.Images)
 	}
 }

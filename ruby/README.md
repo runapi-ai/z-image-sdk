@@ -1,6 +1,6 @@
 # Z-Image API Ruby SDK for RunAPI
 
-The z-image api Ruby SDK is the language-specific package for Z-Image on RunAPI. Use this z-image api package for text-to-image, image-to-image, edit, and creative production flows when your application needs JSON request bodies, task status lookup, and consistent RunAPI errors in Ruby.
+The z-image api Ruby SDK is the language-specific package for Z-Image on RunAPI. Use this z-image api package for text-to-image, image editing, and creative production flows when your application needs JSON request bodies, task status lookup, and consistent RunAPI errors in Ruby.
 
 This z-image api README is the Ruby package guide inside the public `z-image-sdk` repository. For the repository overview, start at `../README.md`; for model details, use https://runapi.ai/models/z-image; for API reference, use https://runapi.ai/docs#z-image; for SDK docs, use https://runapi.ai/docs#sdk-z-image.
 

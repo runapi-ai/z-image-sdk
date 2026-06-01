@@ -20,7 +20,7 @@
 </div>
 <br/>
 
-The z-image api SDK packages JavaScript, Ruby, and Go clients for Z-Image on RunAPI. Use this z-image api SDK for text-to-image, image-to-image, edit, and creative production workflows that need typed installs, JSON request bodies, task polling, and consistent RunAPI errors across services.
+The z-image api SDK packages JavaScript, Ruby, and Go clients for Z-Image on RunAPI. Use this z-image api SDK for text-to-image, image editing, and creative production workflows that need typed installs, JSON request bodies, task polling, and consistent RunAPI errors across services.
 
 Z-Image belongs to the Alibaba catalog on RunAPI. The public model page is https://runapi.ai/models/z-image; variant pages below carry pricing, rate-limit, and commercial-usage details. The public `z-image-sdk` repository groups the JavaScript, Ruby, and Go packages for this model.
 

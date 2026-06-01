@@ -19,7 +19,7 @@ describe('TextToImage', () => {
       model: 'z-image',
       prompt: 'A Paris cafe',
       aspect_ratio: '1:1',
-      nsfw_checker: true,
+      enable_safety_checker: true,
     });
 
     expect(mockHttp.request).toHaveBeenCalledWith('POST', '/api/v1/z_image/text_to_image', {
@@ -27,7 +27,7 @@ describe('TextToImage', () => {
         model: 'z-image',
         prompt: 'A Paris cafe',
         aspect_ratio: '1:1',
-        nsfw_checker: true,
+        enable_safety_checker: true,
       },
     });
     expect(result).toEqual(mockResponse);
