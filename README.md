@@ -80,6 +80,10 @@ Use the most specific z-image api variant page for pricing, rate limits, and com
 
 Default pricing link for the z-image api SDK: https://runapi.ai/models/z-image
 
+## Generated file storage
+
+RunAPI-generated file URLs are temporary. Download and store generated images, videos, audio, or other files in your own durable storage within 7 days; do not treat returned URLs as long-term assets.
+
 ## FAQ
 
 ### Which package should I install for z-image api work?

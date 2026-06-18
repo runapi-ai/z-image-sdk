@@ -3,6 +3,7 @@
 module RunApi
   module ZImage
     module Resources
+      # Generates images from text prompts with configurable aspect ratio and safety filtering.
       class TextToImage
         include RunApi::Core::ResourceHelpers
 
