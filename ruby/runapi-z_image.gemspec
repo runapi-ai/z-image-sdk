@@ -3,8 +3,9 @@
 Dir.chdir(__dir__) do
 
   Gem::Specification.new do |spec|
-    spec.name = "runapi-z-image"
+    spec.name = "runapi-z_image"
     spec.version = "0.2.6"
+    spec.metadata["runapi_slug"] = "z-image"
     spec.authors = ["RunAPI"]
     spec.email = ["contact@runapi.ai"]
 
@@ -17,7 +18,6 @@ Dir.chdir(__dir__) do
     spec.metadata["documentation_uri"] = "https://github.com/runapi-ai/z-image-sdk/blob/main/ruby/README.md"
     spec.metadata["source_code_uri"] = "https://github.com/runapi-ai/z-image-sdk"
     spec.metadata["changelog_uri"] = "https://github.com/runapi-ai/z-image-sdk/blob/main/CHANGELOG.md"
-
 
 
     spec.files = Dir.glob("lib/**/*") + %w[LICENSE README.md]

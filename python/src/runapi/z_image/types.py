@@ -1,11 +1,8 @@
-"""Z-Image model lists, enums, and response models."""
+"""Z-Image response models."""
 
 from __future__ import annotations
 
 from runapi.core import BaseModel, TaskResponse, optional, required
-
-MODELS = ["z-image"]
-ASPECT_RATIOS = ["1:1", "4:3", "3:4", "16:9", "9:16"]
 
 
 class Image(BaseModel):

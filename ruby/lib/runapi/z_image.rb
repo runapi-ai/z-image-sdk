@@ -2,6 +2,7 @@
 
 require "runapi/core"
 require_relative "z_image/types"
+require_relative "z_image/contract_gen"
 require_relative "z_image/resources/text_to_image"
 require_relative "z_image/client"
 

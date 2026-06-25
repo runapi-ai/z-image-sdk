@@ -100,7 +100,7 @@ def test_run_narrows_completed_type():
 
 def test_requires_model():
     client = ZImageClient(api_key="k", http_client=FakeHttp())
-    with pytest.raises(ValidationError, match="model is required"):
+    with pytest.raises(ValidationError, match="model must be one of: z-image"):
         client.text_to_image.create(prompt="hi there", aspect_ratio="1:1")
 
 
@@ -118,11 +118,11 @@ def test_requires_aspect_ratio():
 
 def test_rejects_unknown_model():
     client = ZImageClient(api_key="k", http_client=FakeHttp())
-    with pytest.raises(ValidationError, match="Invalid model: nope. Must be one of: z-image"):
+    with pytest.raises(ValidationError, match="model must be one of: z-image"):
         client.text_to_image.create(model="nope", prompt="hi there", aspect_ratio="1:1")
 
 
 def test_rejects_invalid_aspect_ratio():
     client = ZImageClient(api_key="k", http_client=FakeHttp())
-    with pytest.raises(ValidationError, match="Invalid aspect_ratio"):
+    with pytest.raises(ValidationError, match="aspect_ratio must be one of: 1:1, 4:3, 3:4, 16:9, 9:16"):
         client.text_to_image.create(model="z-image", prompt="hi there", aspect_ratio="2:1")

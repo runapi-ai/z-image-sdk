@@ -7,61 +7,103 @@
 </h3>
 
 <p align="center">
-  Z-Image API SDKs for JavaScript, Ruby, and Go on RunAPI.
+  Z-Image API SDKs for JavaScript, Python, Ruby, Go, and Java on RunAPI.
 </p>
 
 <div align="center">
 
 [![npm](https://img.shields.io/npm/v/@runapi.ai/z-image)](https://www.npmjs.com/package/@runapi.ai/z-image)
-[![RubyGems](https://img.shields.io/gem/v/runapi-z-image)](https://rubygems.org/gems/runapi-z-image)
+[![PyPI](https://img.shields.io/pypi/v/runapi-z-image)](https://pypi.org/project/runapi-z-image/)
+[![RubyGems](https://img.shields.io/gem/v/runapi-z_image)](https://rubygems.org/gems/runapi-z_image)
 [![Go Reference](https://pkg.go.dev/badge/github.com/runapi-ai/z-image-sdk/go.svg)](https://pkg.go.dev/github.com/runapi-ai/z-image-sdk/go)
+[![Maven Central](https://img.shields.io/maven-central/v/ai.runapi/runapi-z-image)](https://central.sonatype.com/artifact/ai.runapi/runapi-z-image)
 [![License](https://img.shields.io/github/license/runapi-ai/z-image-sdk)](https://github.com/runapi-ai/z-image-sdk/blob/main/LICENSE)
 
 </div>
 <br/>
 
-The z-image api SDK packages JavaScript, Ruby, and Go clients for Z-Image on RunAPI. Use this z-image api SDK for text-to-image, image editing, and creative production workflows that need typed installs, JSON request bodies, task polling, and consistent RunAPI errors across services.
+The Z-Image API SDK packages JavaScript, Python, Ruby, Go, and Java clients for Z-Image on RunAPI. Use it for text-to-image workflows when your app needs typed request builders, predictable task polling, file upload helpers, account helpers, and consistent RunAPI errors.
 
-Z-Image belongs to the Alibaba catalog on RunAPI. The public model page is https://runapi.ai/models/z-image; variant pages below carry pricing, rate-limit, and commercial-usage details. The public `z-image-sdk` repository groups the JavaScript, Ruby, and Go packages for this model.
+Z-Image is listed in the RunAPI model catalog at https://runapi.ai/models/z-image. Variant pages below carry pricing, rate-limit, and commercial-usage details. The public `z-image-sdk` repository groups the language packages, examples, CI, and release tags for this model.
 
 ## Install
 
 ```bash
 npm install @runapi.ai/z-image
-gem install runapi-z-image
+pip install runapi-z-image
+gem install runapi-z_image
 go get github.com/runapi-ai/z-image-sdk/go@latest
+```
+
+Gradle:
+
+```kotlin
+dependencies {
+  implementation("ai.runapi:runapi-z-image:0.1.0")
+}
+```
+
+Maven:
+
+```xml
+<dependency>
+  <groupId>ai.runapi</groupId>
+  <artifactId>runapi-z-image</artifactId>
+  <version>0.1.0</version>
+</dependency>
+```
+
+Use the Java BOM when installing multiple RunAPI Java modules:
+
+```kotlin
+dependencies {
+  implementation(platform("ai.runapi:runapi-bom:0.1.0"))
+  implementation("ai.runapi:runapi-z-image")
+}
 ```
 
 ## What you can build
 
-- Build product imagery, creative automation, design previews, and agent image workflows with the z-image api SDK.
-- Keep one model-specific repository while installing only the language package your app needs.
+- Build apps, agent workflows, batch jobs, and production services around Z-Image requests.
+- Install only the language package your app needs while keeping one model-specific repository for docs and releases.
 - Use `create` for submit-only jobs, `get` for status lookup, and `run` for submit-and-poll scripts.
-- Handle authentication, validation, rate limits, insufficient credits, task failures, and polling timeouts through RunAPI SDK errors.
+- Upload local files, URL files, or base64 files through shared RunAPI file helpers.
+- Handle validation, authentication, rate limits, insufficient credits, task failures, and polling timeouts through RunAPI SDK errors.
 
-The JavaScript client exposes generations resources, and the Ruby and Go packages mirror the same RunAPI task lifecycle.
+## Java quick start
 
-## JavaScript quick start
+```java
+import ai.runapi.zimage.ZImageClient;
+import ai.runapi.zimage.types.TextToImageParams;
+import ai.runapi.zimage.types.CompletedTextToImageResponse;
+import ai.runapi.zimage.types.TextToImageModel;
 
-```typescript
-import { ZImageClient } from '@runapi.ai/z-image';
+ZImageClient client = ZImageClient.builder()
+    .apiKey(System.getenv("RUNAPI_API_KEY"))
+    .build();
 
-const client = new ZImageClient();
-
-const task = await client.generations.create({
-  // Pass the Z-Image request body documented at https://runapi.ai/docs#z-image.
-});
-
-const status = await client.generations.get(task.id);
+CompletedTextToImageResponse result = client.textToImage().run(
+    TextToImageParams.builder()
+        .model(TextToImageModel.Z_IMAGE)
+        .prompt("A bilingual poster with crisp typography")
+        .aspectRatio("1:1")
+        .build()
+);
 ```
 
-For short scripts, use `run` with the same JSON body to create the task and wait for completion. For web request handlers, prefer `create` plus webhook or later `get` polling so the server does not hold a worker open.
+Java packages target Java 8 bytecode and are tested on Java 8, 11, 17, and 21. Each model artifact depends on `ai.runapi:runapi-core`, so application code normally installs only `ai.runapi:runapi-z-image`.
+
+## Task lifecycle
+
+Most media endpoints are asynchronous. `create()` submits a task and returns its id, `get(id)` fetches the latest task state, and `run(params)` creates the task and polls until it reaches a terminal state. In web request handlers, prefer `create()` plus webhook or later `get()` polling so the server does not hold a worker open.
 
 ## Repository layout
 
 - `js/` publishes `@runapi.ai/z-image`.
-- `ruby/` publishes `runapi-z-image` when RubyGems publishing resumes.
+- `python/` publishes `runapi-z-image`.
+- `ruby/` publishes `runapi-z_image` when RubyGems publishing resumes.
 - `go/` publishes `github.com/runapi-ai/z-image-sdk/go` and depends on `github.com/runapi-ai/core-sdk/go`.
+- `java/` publishes `ai.runapi:runapi-z-image` and depends on `ai.runapi:runapi-core`.
 
 ## Public links
 
@@ -75,24 +117,24 @@ For short scripts, use `run` with the same JSON body to create the task and wait
 
 ## Pricing and variants
 
-Use the most specific z-image api variant page for pricing, rate limits, and commercial usage:
+Use the most specific Z-Image variant page for pricing, rate limits, and commercial usage:
 - [Z Image](https://runapi.ai/models/z-image)
 
-Default pricing link for the z-image api SDK: https://runapi.ai/models/z-image
+Default pricing link for the Z-Image SDK: https://runapi.ai/models/z-image
 
-## Generated file storage
+## File storage
 
 RunAPI-generated file URLs are temporary. Download and store generated images, videos, audio, or other files in your own durable storage within 7 days; do not treat returned URLs as long-term assets.
 
 ## FAQ
 
-### Which package should I install for z-image api work?
+### Which package should I install for Z-Image work?
 
-Install the model package for your language: `@runapi.ai/z-image`, `runapi-z-image`, or `github.com/runapi-ai/z-image-sdk/go`. Install core SDK packages only when you are building shared SDK infrastructure.
+Install the model package for your language: `@runapi.ai/z-image` on npm, `runapi-z-image` on PyPI, `runapi-z_image` on RubyGems, `github.com/runapi-ai/z-image-sdk/go`, or `ai.runapi:runapi-z-image`. Install core SDK packages only when you are building shared SDK infrastructure.
 
 ### Where should public links point?
 
-Primary z-image api links point to https://runapi.ai/models/z-image. Pricing and usage-policy links point to variant pages such as https://runapi.ai/models/z-image. Provider comparisons point to https://runapi.ai/providers/alibaba, and broad browsing points to https://runapi.ai/models.
+Primary Z-Image links point to https://runapi.ai/models/z-image. Pricing and usage-policy links point to variant pages such as https://runapi.ai/models/z-image. Provider comparisons point to https://runapi.ai/providers/alibaba, and broad browsing points to https://runapi.ai/models.
 
 ## License
 

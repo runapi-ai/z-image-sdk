@@ -23,27 +23,12 @@ module RunApi
 
         def create(**params)
           params = compact_params(params)
-          validate_params!(params)
+          validate_contract!(CONTRACT["text-to-image"], params)
           request(:post, ENDPOINT, body: params)
         end
 
         def get(id)
           request(:get, "#{ENDPOINT}/#{id}")
-        end
-
-        private
-
-        def validate_params!(params)
-          raise Core::ValidationError, "model is required" unless param(params, :model)
-          raise Core::ValidationError, "prompt is required" unless param(params, :prompt)
-          raise Core::ValidationError, "aspect_ratio is required" unless param(params, :aspect_ratio)
-
-          model = param(params, :model)
-          unless Types::MODELS.include?(model)
-            raise Core::ValidationError, "Invalid model: #{model}. Must be one of: #{Types::MODELS.join(", ")}"
-          end
-
-          validate_optional!(params, :aspect_ratio, Types::ASPECT_RATIOS)
         end
       end
     end

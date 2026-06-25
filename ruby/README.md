@@ -7,13 +7,13 @@ This z-image api README is the Ruby package guide inside the public `z-image-sdk
 ## Install
 
 ```bash
-gem install runapi-z-image
+gem install runapi-z_image
 ```
 
 ## Quick start
 
 ```ruby
-require "runapi-z-image"
+require "runapi-z_image"
 
 client = RunApi::ZImage::Client.new
 task = client.generations.create(
