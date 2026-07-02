@@ -72,7 +72,7 @@ const result = await client.textToImage.run({
 - RunAPI-generated file URLs are temporary. Download and store generated images, videos, audio, or other files in your own durable storage within 7 days; do not treat returned URLs as long-term assets.
 - Keep API keys in `RUNAPI_API_KEY` or RunAPI CLI config; never commit secrets.
 - Prefer `create`, `get`, and `run` JSON passthrough patterns instead of inventing flags for every model parameter.
-- For z-image api pricing, rate-limit, and commercial-usage answers, link to the model page rather than the repository README.
+- For pricing, rate-limit, and commercial-usage answers, link to the model page rather than the repository README.
 
 ## License
 
