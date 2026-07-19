@@ -7,14 +7,14 @@
 </h3>
 
 <p align="center">
-  Z-Image API SDKs for JavaScript, Python, Ruby, Go, and Java on RunAPI.
+  Z-Image API SDKs for JavaScript, Python, Ruby, Go, Java, and PHP on RunAPI.
 </p>
 
 <div align="center">
 
 [![npm](https://img.shields.io/npm/v/@runapi.ai/z-image)](https://www.npmjs.com/package/@runapi.ai/z-image)
 [![PyPI](https://img.shields.io/pypi/v/runapi-z-image)](https://pypi.org/project/runapi-z-image/)
-[![RubyGems](https://img.shields.io/gem/v/runapi-z_image)](https://rubygems.org/gems/runapi-z_image)
+[![RubyGems](https://img.shields.io/gem/v/runapi-z-image)](https://rubygems.org/gems/runapi-z-image)
 [![Go Reference](https://pkg.go.dev/badge/github.com/runapi-ai/z-image-sdk/go.svg)](https://pkg.go.dev/github.com/runapi-ai/z-image-sdk/go)
 [![Maven Central](https://img.shields.io/maven-central/v/ai.runapi/runapi-z-image)](https://central.sonatype.com/artifact/ai.runapi/runapi-z-image)
 [![License](https://img.shields.io/github/license/runapi-ai/z-image-sdk)](https://github.com/runapi-ai/z-image-sdk/blob/main/LICENSE)
@@ -22,16 +22,16 @@
 </div>
 <br/>
 
-The Z-Image API SDK packages JavaScript, Python, Ruby, Go, and Java clients for Z-Image on RunAPI. Use it for text-to-image workflows when your app needs typed request builders, predictable task polling, file upload helpers, account helpers, and consistent RunAPI errors.
+The Z-Image API SDK packages JavaScript, Python, Ruby, Go, Java, and PHP clients for Z-Image on RunAPI. Use it for text-to-image workflows when your app needs typed request builders, predictable task polling, file upload helpers, account helpers, and consistent RunAPI errors.
 
-Z-Image is listed in the RunAPI model catalog at https://runapi.ai/models/z-image. Variant pages below carry pricing, rate-limit, and commercial-usage details. The public `z-image-sdk` repository groups the language packages, examples, CI, and release tags for this model.
+Z-Image is listed in the RunAPI model catalog at https://runapi.ai/models/z-image. Variant pages below carry pricing, rate-limit, and commercial-usage details. The public `z-image-sdk` repository groups the non-PHP language packages, examples, CI, and release tags for this model. The PHP package is released from a split Composer repository.
 
 ## Install
 
 ```bash
 npm install @runapi.ai/z-image
 pip install runapi-z-image
-gem install runapi-z_image
+gem install runapi-z-image
 go get github.com/runapi-ai/z-image-sdk/go@latest
 ```
 
@@ -39,7 +39,7 @@ Gradle:
 
 ```kotlin
 dependencies {
-  implementation("ai.runapi:runapi-z-image:0.1.0")
+  implementation("ai.runapi:runapi-z-image:0.1.1")
 }
 ```
 
@@ -49,7 +49,7 @@ Maven:
 <dependency>
   <groupId>ai.runapi</groupId>
   <artifactId>runapi-z-image</artifactId>
-  <version>0.1.0</version>
+  <version>0.1.1</version>
 </dependency>
 ```
 
@@ -57,10 +57,12 @@ Use the Java BOM when installing multiple RunAPI Java modules:
 
 ```kotlin
 dependencies {
-  implementation(platform("ai.runapi:runapi-bom:0.1.0"))
+  implementation(platform("ai.runapi:runapi-bom:0.1.7"))
   implementation("ai.runapi:runapi-z-image")
 }
 ```
+
+The PHP package is published from the split Composer repository as `runapi-ai/z-image`; see https://github.com/runapi-ai/z-image-php for PHP install and examples.
 
 ## What you can build
 
@@ -101,7 +103,7 @@ Most media endpoints are asynchronous. `create()` submits a task and returns its
 
 - `js/` publishes `@runapi.ai/z-image`.
 - `python/` publishes `runapi-z-image`.
-- `ruby/` publishes `runapi-z_image` when RubyGems publishing resumes.
+- `ruby/` publishes `runapi-z-image`.
 - `go/` publishes `github.com/runapi-ai/z-image-sdk/go` and depends on `github.com/runapi-ai/core-sdk/go`.
 - `java/` publishes `ai.runapi:runapi-z-image` and depends on `ai.runapi:runapi-core`.
 
@@ -111,6 +113,7 @@ Most media endpoints are asynchronous. `create()` submits a task and returns its
 - SDK docs: https://runapi.ai/docs#sdk-z-image
 - Product docs: https://runapi.ai/docs#z-image
 - SDK repository: https://github.com/runapi-ai/z-image-sdk
+- PHP package repository: https://github.com/runapi-ai/z-image-php
 - Skill repository: https://github.com/runapi-ai/z-image
 - Provider comparison: https://runapi.ai/providers/alibaba
 - Full catalog: https://runapi.ai/models
@@ -130,7 +133,7 @@ RunAPI-generated file URLs are temporary. Download and store generated images, v
 
 ### Which package should I install for Z-Image work?
 
-Install the model package for your language: `@runapi.ai/z-image` on npm, `runapi-z-image` on PyPI, `runapi-z_image` on RubyGems, `github.com/runapi-ai/z-image-sdk/go`, or `ai.runapi:runapi-z-image`. Install core SDK packages only when you are building shared SDK infrastructure.
+Install the model package for your language: `@runapi.ai/z-image` on npm, `runapi-z-image` on PyPI, `runapi-z-image` on RubyGems, `github.com/runapi-ai/z-image-sdk/go`, `ai.runapi:runapi-z-image` on Maven Central, or `runapi-ai/z-image` on Packagist. Install core SDK packages only when you are building shared SDK infrastructure.
 
 ### Where should public links point?
 
