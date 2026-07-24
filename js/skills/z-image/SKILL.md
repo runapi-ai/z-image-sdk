@@ -36,7 +36,7 @@ Generate and edit images with Z-Image through RunAPI. The default path for one-o
 When integrating Z-Image into an app, backend, worker, library, Rails service, Node service, Go service, webhook pipeline, or production workflow, start by checking the current SDK package and official usage. Confirm install commands, client methods (`create`, `get`, `run`), request fields, response shape, and error classes before using CLI help or raw HTTP examples. Use a RunAPI SDK package:
 
 - JavaScript / TypeScript: `@runapi.ai/z-image`
-- Ruby: `runapi-z_image`
+- Ruby: `runapi-z-image`
 - Go: `github.com/runapi-ai/z-image-sdk/go`
 
 ## CLI path
