@@ -1,6 +1,6 @@
 import pytest
 
-from runapi.core import config
+from runapi.core import ApiResponse, RequestOptions, config
 from runapi.core.errors import AuthenticationError, ValidationError
 from runapi.z_image import ZImageClient
 from runapi.z_image.resources.text_to_image import TextToImage
@@ -11,9 +11,11 @@ class FakeHttp:
     def __init__(self, *responses):
         self._responses = list(responses)
         self.calls = []
+        self.options = []
 
     def request(self, method, path, body=None, options=None):
         self.calls.append((method, path, body))
+        self.options.append(options)
         if self._responses:
             return self._responses.pop(0)
         return {"id": "task_1", "status": "pending"}
@@ -77,11 +79,36 @@ def test_create_posts_compacted_body():
     assert isinstance(result, TextToImageResponse)
 
 
+def test_create_passes_request_options_and_retains_response_headers():
+    fake = FakeHttp(ApiResponse({"id": "t1", "status": "pending"}, {"X-RunAPI-Task-Id": "task-ref-1"}))
+    client = ZImageClient(api_key="k", http_client=fake)
+    options = RequestOptions(headers={"X-Client-Request-Id": "req-123"})
+
+    result = client.text_to_image.create(
+        model="z-image",
+        prompt="hello world",
+        aspect_ratio="1:1",
+        options=options,
+    )
+
+    assert fake.options == [options]
+    assert result.runapi_task_id == "task-ref-1"
+    assert result.response_headers["X-RunAPI-Task-Id"] == "task-ref-1"
+
+
 def test_get_fetches_by_id():
     fake = FakeHttp({"id": "t1", "status": "processing"})
     client = ZImageClient(api_key="k", http_client=fake)
     client.text_to_image.get("t1")
     assert fake.calls == [("get", "/api/v1/z_image/text_to_image/t1", None)]
+
+
+def test_get_passes_request_options():
+    options = RequestOptions(headers={"X-Client-Request-Id": "req-123"})
+    fake = FakeHttp({"id": "t1", "status": "processing"})
+    client = ZImageClient(api_key="k", http_client=fake)
+    client.text_to_image.get("t1", options=options)
+    assert fake.options == [options]
 
 
 def test_run_narrows_completed_type():
@@ -93,6 +120,27 @@ def test_run_narrows_completed_type():
     result = client.text_to_image.run(model="z-image", prompt="a serene lake", aspect_ratio="1:1")
     assert isinstance(result, CompletedTextToImageResponse)
     assert result.images[0].url == "https://x/y.png"
+
+
+def test_run_passes_request_options_and_retains_completed_response_headers():
+    options = RequestOptions(headers={"X-Client-Request-Id": "req-123"})
+    fake = FakeHttp(
+        ApiResponse({"id": "t1", "status": "pending"}, {"X-RunAPI-Task-Id": "task-ref-create"}),
+        ApiResponse(
+            {"id": "t1", "status": "completed", "images": [{"url": "https://x/y.png"}]},
+            {"X-RunAPI-Task-Id": "task-ref-complete"},
+        ),
+    )
+    client = ZImageClient(api_key="k", http_client=fake)
+    result = client.text_to_image.run(
+        model="z-image",
+        prompt="a serene lake",
+        aspect_ratio="1:1",
+        options=options,
+    )
+    assert fake.options == [options, options]
+    assert isinstance(result, CompletedTextToImageResponse)
+    assert result.runapi_task_id == "task-ref-complete"
 
 
 # --- validation -----------------------------------------------------------
