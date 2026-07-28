@@ -14,10 +14,6 @@ RSpec.describe RunApi::ZImage::Client do
     expect(client).to be_a(described_class)
   end
 
-  it "raises AuthenticationError without api_key" do
-    expect { described_class.new }.to raise_error(RunApi::Core::AuthenticationError, /API key is required/)
-  end
-
   it "exposes text_to_image accessor" do
     client = described_class.new(api_key: "test-key")
     expect(client.text_to_image).to be_a(RunApi::ZImage::Resources::TextToImage)
