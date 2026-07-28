@@ -1,4 +1,4 @@
-import type { AsyncTaskStatus } from '@runapi.ai/core';
+import type { AsyncTaskStatus, TaskBillingResponse, TaskResponse } from '@runapi.ai/core';
 
 /** Z-Image model slug. */
 export type ZImageModel = 'z-image';
@@ -22,7 +22,7 @@ export interface TextToImageParams {
 }
 
 /** Acknowledgement returned by `create()` before the task starts processing. */
-export interface TaskCreateResponse {
+export interface TaskCreateResponse extends TaskBillingResponse {
   id: string;
   status?: 'processing';
 }
@@ -33,7 +33,7 @@ export interface Image {
 }
 
 /** Async text-to-image task result with lifecycle status. */
-export interface TextToImageResponse {
+export interface TextToImageResponse extends TaskResponse {
   id: string;
   status: AsyncTaskStatus;
   /** Generated image files; populated once the task completes. */
