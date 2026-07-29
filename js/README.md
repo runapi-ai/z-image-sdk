@@ -2,7 +2,7 @@
 
 The Z-Image JavaScript SDK is the language-specific package for Z-Image on RunAPI. Use this package for image generation, image editing, and creative production workflows when your application needs request bodies, task status lookup, and consistent RunAPI errors in JavaScript.
 
-This README is the JavaScript package guide inside the public `z-image-sdk` repository. For the repository overview, start at `../README.md`; for model details, use https://runapi.ai/models/z-image; for API reference, use https://runapi.ai/docs#z-image; for SDK docs, use https://runapi.ai/docs#sdk-z-image.
+This README is the JavaScript package guide inside the public `z-image-sdk` repository. For the repository overview, start at `../README.md`; for model details, use https://runapi.ai/models/z-image; for API reference, use https://runapi.ai/docs/api/z-image/text-to-image; for SDK docs, use https://runapi.ai/docs/resources/sdks.
 
 ## Install
 
@@ -17,7 +17,7 @@ import { ZImageClient } from '@runapi.ai/z-image';
 
 const client = new ZImageClient();
 const task = await client.textToImage.create({
-  // Pass the Z-Image JSON request body from https://runapi.ai/docs#z-image.
+  // Pass the Z-Image JSON request body from https://runapi.ai/docs/api/z-image/text-to-image.
 });
 const status = await client.textToImage.get(task.id);
 ```
@@ -33,8 +33,8 @@ Use the TypeScript types in `src/types.ts` and the resource classes under `src/r
 ## Links
 
 - Model page: https://runapi.ai/models/z-image
-- SDK docs: https://runapi.ai/docs#sdk-z-image
-- Product docs: https://runapi.ai/docs#z-image
+- SDK docs: https://runapi.ai/docs/resources/sdks
+- Product docs: https://runapi.ai/docs/api/z-image/text-to-image
 - Pricing and rate limits: https://runapi.ai/models/z-image
 - Provider comparison: https://runapi.ai/providers/alibaba
 - Full catalog: https://runapi.ai/models

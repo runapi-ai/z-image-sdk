@@ -110,8 +110,8 @@ Most media endpoints are asynchronous. `create()` submits a task and returns its
 ## Public links
 
 - Model page: https://runapi.ai/models/z-image
-- SDK docs: https://runapi.ai/docs#sdk-z-image
-- Product docs: https://runapi.ai/docs#z-image
+- SDK docs: https://runapi.ai/docs/resources/sdks
+- Product docs: https://runapi.ai/docs/api/z-image/text-to-image
 - SDK repository: https://github.com/runapi-ai/z-image-sdk
 - PHP package repository: https://github.com/runapi-ai/z-image-php
 - Skill repository: https://github.com/runapi-ai/z-image
