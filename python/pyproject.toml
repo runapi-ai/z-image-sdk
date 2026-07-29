@@ -4,14 +4,14 @@ build-backend = "hatchling.build"
 
 [project]
 name = "runapi-z-image"
-version = "0.2.0"
+version = "0.2.1"
 description = "RunAPI Z-Image SDK for text-to-image workflows in JavaScript, Python, Ruby, Go, Java, and PHP"
 readme = "README.md"
 requires-python = ">=3.9"
 license = "Apache-2.0"
 authors = [{ name = "RunAPI", email = "contact@runapi.ai" }]
 keywords = ["runapi", "runapi-ai", "z-image", "api", "sdk", "typescript", "python", "ruby", "golang", "java", "maven", "gradle", "image-generation", "text-to-image", "image-api", "z-image-api"]
-dependencies = ["runapi-core>=0.3.1"]
+dependencies = ["runapi-core>=0.3.3"]
 
 [project.urls]
 Homepage = "https://runapi.ai/models/z-image"
@@ -19,7 +19,7 @@ Documentation = "https://runapi.ai/docs/resources/sdks"
 Source = "https://github.com/runapi-ai/z-image-sdk"
 Issues = "https://github.com/runapi-ai/z-image-sdk/issues"
 Changelog = "https://github.com/runapi-ai/z-image-sdk/blob/main/CHANGELOG.md"
-"Release Notes" = "https://github.com/runapi-ai/z-image-sdk/releases/tag/python%2Fv0.2.0"
+"Release Notes" = "https://github.com/runapi-ai/z-image-sdk/releases/tag/python%2Fv0.2.1"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/runapi"]

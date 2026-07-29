@@ -59,8 +59,8 @@ const result = await client.textToImage.run({
 ## Routing
 
 - Model page: https://runapi.ai/models/z-image
-- Product docs: https://runapi.ai/docs#z-image
-- SDK docs: https://runapi.ai/docs#sdk-z-image
+- Product docs: https://runapi.ai/docs/api/z-image/text-to-image
+- SDK docs: https://runapi.ai/docs/resources/sdks
 - SDK repository: https://github.com/runapi-ai/z-image-sdk
 - Pricing and rate limits: https://runapi.ai/models/z-image
 - Provider comparison: https://runapi.ai/providers/alibaba
