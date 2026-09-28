@@ -74,8 +74,7 @@ def test_create_posts_compacted_body():
         model="z-image", prompt="hello world", aspect_ratio="1:1", seed=None
     )
     assert fake.calls == [
-        ("post", "/api/v1/z_image/text_to_image", {"model": "z-image", "prompt": "hello world", "aspect_ratio": "1:1"}),
-    ]
+        ("post", "/api/v1/z_image/text_to_image", {"model": "z-image", "prompt": "hello world", "aspect_ratio": "1:1"})]
     assert isinstance(result, TextToImageResponse)
 
 
@@ -114,7 +113,7 @@ def test_get_passes_request_options():
 def test_run_narrows_completed_type():
     fake = FakeHttp(
         {"id": "t1", "status": "pending"},
-        {"id": "t1", "status": "completed", "images": [{"url": "https://x/y.png"}]},
+        {"id": "t1", "status": "completed", "usage": {"cost": 0.05}, "images": [{"url": "https://x/y.png"}]},
     )
     client = ZImageClient(api_key="k", http_client=fake)
     result = client.text_to_image.run(model="z-image", prompt="a serene lake", aspect_ratio="1:1")
@@ -127,7 +126,7 @@ def test_run_passes_request_options_and_retains_completed_response_headers():
     fake = FakeHttp(
         ApiResponse({"id": "t1", "status": "pending"}, {"X-RunAPI-Task-Id": "task-ref-create"}),
         ApiResponse(
-            {"id": "t1", "status": "completed", "images": [{"url": "https://x/y.png"}]},
+            {"id": "t1", "status": "completed", "usage": {"cost": 0.05}, "images": [{"url": "https://x/y.png"}]},
             {"X-RunAPI-Task-Id": "task-ref-complete"},
         ),
     )
