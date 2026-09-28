@@ -3,7 +3,7 @@
   "runapi": {
     "slug": "z-image"
   },
-  "version": "0.2.8",
+  "version": "0.2.9",
   "description": "RunAPI Z-Image SDK for text-to-image workflows in JavaScript, Python, Ruby, Go, Java, and PHP",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
@@ -28,7 +28,7 @@
     "clean": "rm -rf dist"
   },
   "dependencies": {
-    "@runapi.ai/core": "^0.4.2"
+    "@runapi.ai/core": "^0.4.3"
   },
   "devDependencies": {
     "@types/node": "^20.0.0",

@@ -1,5 +1,15 @@
 # Changelog
 
+## [js/v0.2.9](https://github.com/runapi-ai/z-image-sdk/releases/tag/js%2Fv0.2.9), [go/v0.2.9](https://github.com/runapi-ai/z-image-sdk/releases/tag/go%2Fv0.2.9) - 2026-09-28
+
+### Added
+- Return usage.cost as a float USD amount on completed async Task query and webhook envelopes.
+
+### Removed
+- Remove the public Task billing object from Task envelopes.
+  Migration: Read usage.cost on completed Task envelopes. Create, processing, and failed envelopes omit usage.
+
+
 ## [ruby/v0.2.10](https://github.com/runapi-ai/z-image-sdk/releases/tag/ruby%2Fv0.2.10) - 2026-09-04
 
 ### Changed
