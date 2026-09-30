@@ -2,7 +2,7 @@
 
 [![Maven Central](https://img.shields.io/maven-central/v/ai.runapi/runapi-z-image)](https://central.sonatype.com/artifact/ai.runapi/runapi-z-image)
 
-The Z-Image Java SDK is the language-specific package for Z-Image on RunAPI. Use it when your Java application needs typed builders, strict request validation, task status lookup, local polling helpers, file uploads, account helpers, and consistent RunAPI errors for Z-Image workflows.
+The Z-Image Java SDK is the language-specific package for Z-Image on RunAPI. Use it when your Java application needs typed builders, server-side request validation, task status lookup, local polling helpers, file uploads, account helpers, and consistent RunAPI errors for Z-Image workflows.
 
 This README is the Java package guide inside the public `z-image-sdk` repository. For the repository overview, start at `../README.md`; for model details, use https://runapi.ai/models/z-image; for API reference, use https://runapi.ai/docs/api/z-image/text-to-image; for SDK docs, use https://runapi.ai/docs/resources/sdks.
 
@@ -16,7 +16,7 @@ Gradle:
 
 ```kotlin
 dependencies {
-  implementation("ai.runapi:runapi-z-image:0.1.1")
+  implementation("ai.runapi:runapi-z-image:0.2.0")
 }
 ```
 
@@ -26,7 +26,7 @@ Maven:
 <dependency>
   <groupId>ai.runapi</groupId>
   <artifactId>runapi-z-image</artifactId>
-  <version>0.1.1</version>
+  <version>0.2.0</version>
 </dependency>
 ```
 
@@ -34,7 +34,7 @@ Use the BOM when multiple RunAPI Java modules are installed:
 
 ```kotlin
 dependencies {
-  implementation(platform("ai.runapi:runapi-bom:0.7.0"))
+  implementation(platform("ai.runapi:runapi-bom:0.9.0"))
   implementation("ai.runapi:runapi-z-image")
 }
 ```
@@ -47,7 +47,7 @@ Maven BOM:
     <dependency>
       <groupId>ai.runapi</groupId>
       <artifactId>runapi-bom</artifactId>
-      <version>0.7.0</version>
+      <version>0.9.0</version>
       <type>pom</type>
       <scope>import</scope>
     </dependency>
@@ -159,12 +159,9 @@ All SDK errors extend `RunApiException`.
 ```java
 import ai.runapi.core.errors.RateLimitException;
 import ai.runapi.core.errors.RunApiException;
-import ai.runapi.core.errors.ValidationException;
 
 try {
   client.textToImage().run(params);
-} catch (ValidationException error) {
-  System.err.println(error.getMessage());
 } catch (RateLimitException error) {
   System.err.println(error.getRetryAfter());
 } catch (RunApiException error) {

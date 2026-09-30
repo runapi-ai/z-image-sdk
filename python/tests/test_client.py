@@ -1,7 +1,7 @@
 import pytest
 
 from runapi.core import ApiResponse, RequestOptions, config
-from runapi.core.errors import AuthenticationError, ValidationError
+from runapi.core.errors import AuthenticationError
 from runapi.z_image import ZImageClient
 from runapi.z_image.resources.text_to_image import TextToImage
 from runapi.z_image.types import CompletedTextToImageResponse, TextToImageResponse
@@ -140,36 +140,3 @@ def test_run_passes_request_options_and_retains_completed_response_headers():
     assert fake.options == [options, options]
     assert isinstance(result, CompletedTextToImageResponse)
     assert result.runapi_task_id == "task-ref-complete"
-
-
-# --- validation -----------------------------------------------------------
-
-
-def test_requires_model():
-    client = ZImageClient(api_key="k", http_client=FakeHttp())
-    with pytest.raises(ValidationError, match="model must be one of: z-image"):
-        client.text_to_image.create(prompt="hi there", aspect_ratio="1:1")
-
-
-def test_requires_prompt():
-    client = ZImageClient(api_key="k", http_client=FakeHttp())
-    with pytest.raises(ValidationError, match="prompt is required"):
-        client.text_to_image.create(model="z-image", aspect_ratio="1:1")
-
-
-def test_requires_aspect_ratio():
-    client = ZImageClient(api_key="k", http_client=FakeHttp())
-    with pytest.raises(ValidationError, match="aspect_ratio is required"):
-        client.text_to_image.create(model="z-image", prompt="hi there")
-
-
-def test_rejects_unknown_model():
-    client = ZImageClient(api_key="k", http_client=FakeHttp())
-    with pytest.raises(ValidationError, match="model must be one of: z-image"):
-        client.text_to_image.create(model="nope", prompt="hi there", aspect_ratio="1:1")
-
-
-def test_rejects_invalid_aspect_ratio():
-    client = ZImageClient(api_key="k", http_client=FakeHttp())
-    with pytest.raises(ValidationError, match="aspect_ratio must be one of: 1:1, 4:3, 3:4, 16:9, 9:16"):
-        client.text_to_image.create(model="z-image", prompt="hi there", aspect_ratio="2:1")

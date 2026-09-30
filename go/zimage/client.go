@@ -48,9 +48,6 @@ type TextToImage struct{ http core.HTTPClient }
 func (r *TextToImage) Create(ctx context.Context, params TextToImageParams, opts ...option.RequestOption) (*core.TaskCreateResponse, error) {
 	requestOptions, _ := option.ResolveRequestOptions(opts...)
 	body := core.CompactParams(params)
-	if err := core.ValidateParams(contractSchema["text-to-image"], body); err != nil {
-		return nil, err
-	}
 	return core.PostJSON[core.TaskCreateResponse](ctx, r.http, textToImagePath, body, requestOptions)
 }
 

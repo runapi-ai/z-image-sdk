@@ -34,16 +34,6 @@ RSpec.describe RunApi::ZImage::Resources::TextToImage do
       expect(result.runapi_task_id).to eq("task-ref-1")
       expect(result.response_headers["X-RunAPI-Task-Id"]).to eq("task-ref-1")
     end
-
-    it "raises ValidationError when required params are missing" do
-      expect { text_to_image.create(model: "z-image", prompt: "test") }
-        .to raise_error(RunApi::Core::ValidationError, /aspect_ratio is required/)
-    end
-
-    it "raises ValidationError for invalid aspect_ratio" do
-      expect { text_to_image.create(model: "z-image", prompt: "test", aspect_ratio: "2:3") }
-        .to raise_error(RunApi::Core::ValidationError, /aspect_ratio must be one of: 1:1, 4:3, 3:4, 16:9, 9:16/)
-    end
   end
 
   describe "#get" do
